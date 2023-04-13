@@ -93,7 +93,8 @@ for item in logs.scan():
         new_logs.put_item(new_item, overwrite=True)
     except ValidationException:
         print(dst_table, new_item)
-    except JSONResponseError:
-        print(ddbc.describe_table(dst_table)["Table"]["TableStatus"])
+    except JSONResponseError as e:
+        print(e)
+        # print(ddbc.describe_table(dst_table)["Table"]["TableStatus"])
 
 print("We are done. Exiting...")
